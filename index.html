@@ -1710,7 +1710,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Local Taxa Tool (LocaTT) Tutorial</h1>
 <h4 class="author">Contact: Kenen Goodwin (<a href="mailto:urodelan@gmail.com" class="email">urodelan@gmail.com</a>)</h4>
-<h4 class="date">Last compiled on 25 December, 2022</h4>
+<h4 class="date">Last compiled on 5 April, 2023</h4>
 
 </div>
 
@@ -1773,7 +1773,7 @@ install_github(&quot;Urodelan/LocaTT&quot;)
 
 # Load the Local Taxa Tool package.
 library(LocaTT)</code></pre>
-<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.0.0.
+<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.0.1.
 ##    ______  ______  ______   Geographically-conscious
 ##     |  | \/ |  | \/ |  |    taxonomic assignment
 ##    _|__|_/\_|__|_/\_|__|_   for DNA metabarcoding.
@@ -1894,14 +1894,14 @@ this record assigns members of order Testudines (the turtles) to class
 Reptilia. NCBI taxonomy does not have Reptilia. Because there is no
 class associated with Testudines in NCBI taxonomy, the class for
 Testudines used by MIDORI is “class_Testudines”. Within the
-format_reference_database function, the old reference taxonomies are
-replaced with the new taxonomies as listed in the taxonomy edits file.
-The replacements are made sequentially in the order records appear in
-the taxonomy edits file. In addition to editing taxonomies, records in
-the taxonomy edits file can also be used to fix typos in the reference
-database. For example, the final record in the Taxonomy_Edits_NCBI.csv
-file corrects a typo in the species binomial “Panthera_sp_laea” to
-“Panthera_spelaea”.</p>
+<code>format_reference_database</code> function, the old reference
+taxonomies are replaced with the new taxonomies as listed in the
+taxonomy edits file. The replacements are made sequentially in the order
+records appear in the taxonomy edits file. In addition to editing
+taxonomies, records in the taxonomy edits file can also be used to fix
+typos in the reference database. For example, the final record in the
+Taxonomy_Edits_NCBI.csv file corrects a typo in the species binomial
+“Panthera_sp_laea” to “Panthera_spelaea”.</p>
 <p>Finally, we will add and remove certain sequences from the reference
 database. Locate the example Sequence_Edits_Region_srRNA.csv file, and
 open the file in your preferred spreadsheet application. There are 11
@@ -2259,8 +2259,9 @@ the right side of the screen and select “Search Summary”. You will be
 prompted to sign-in or create an IUCN Red List account, answer questions
 relating to your desired use of the data, and then you will be able to
 download. The downloaded taxonomy.csv and common_names.csv files are of
-interest here, and these can be used with the get_taxonomies.IUCN
-function to create a formatted local taxa list.</p>
+interest here, and these can be used with the
+<code>get_taxonomies.IUCN</code> function to create a formatted local
+taxa list.</p>
 <p>We will use a taxonomy edits file to adjust the IUCN Red List
 taxonomies to better reflect the taxonomy system of our reference
 database. Locate the example Taxonomy_Edits_IUCN.csv file, and open the
@@ -2880,17 +2881,17 @@ citation(&quot;LocaTT&quot;)</code></pre>
 <pre><code>## 
 ## To cite the Local Taxa Tool (LocaTT) in publications use:
 ## 
-##   Kenen B Goodwin and Taal Levi (2022). Local Taxa Tool (LocaTT):
+##   Kenen B Goodwin and Taal Levi (2023). Local Taxa Tool (LocaTT):
 ##   Geographically-conscious taxonomic assignment for DNA metabarcoding.
-##   R package version 1.0.0, https://github.com/Urodelan/LocaTT.
+##   R package version 1.0.1, https://github.com/Urodelan/LocaTT.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
 ##   @Manual{,
 ##     title = {Local Taxa Tool (LocaTT): Geographically-conscious taxonomic assignment for DNA metabarcoding},
 ##     author = {Kenen B Goodwin and Taal Levi},
-##     year = {2022},
-##     note = {R package version 1.0.0},
+##     year = {2023},
+##     note = {R package version 1.0.1},
 ##     url = {https://github.com/Urodelan/LocaTT},
 ##   }</code></pre>
 <hr />
