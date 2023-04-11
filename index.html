@@ -1710,7 +1710,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Local Taxa Tool (LocaTT) Tutorial</h1>
 <h4 class="author">Contact: Kenen Goodwin (<a href="mailto:urodelan@gmail.com" class="email">urodelan@gmail.com</a>)</h4>
-<h4 class="date">Last compiled on 10 April, 2023</h4>
+<h4 class="date">Last compiled on 11 April, 2023</h4>
 
 </div>
 
@@ -1773,7 +1773,7 @@ install_github(&quot;Urodelan/LocaTT&quot;)
 
 # Load the Local Taxa Tool package.
 library(LocaTT)</code></pre>
-<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.0.2.
+<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.0.3.
 ##    ______  ______  ______   Geographically-conscious
 ##     |  | \/ |  | \/ |  |    taxonomic assignment
 ##    _|__|_/\_|__|_/\_|__|_   for DNA metabarcoding.
@@ -2604,6 +2604,187 @@ Local_species field.</p>
 <p>In record 3, there were no “significant” BLAST hits, resulting in “No
 significant similarity found” in the Local Taxa Tool output for this
 record.</p>
+<p>If we want to return full taxonomies in the
+<code>local_taxa_tool</code> output file, we can set the full_names
+argument to TRUE. We can also change the separator between taxa names
+using the separator argument. In the below example, we return full
+taxonomies and change the separator between taxa names in the
+<code>local_taxa_tool</code> output file.</p>
+<pre class="r"><code># Run the Local Taxa Tool.
+local_taxa_tool(
+  path_to_sequences_to_classify=&quot;Sequences.fasta&quot;,
+  path_to_BLAST_database=&quot;BLAST_DB_srRNA.fasta&quot;,
+  path_to_output_file=&quot;Sequences_Classified_Taxonomies.csv&quot;,
+  path_to_list_of_local_taxa=&quot;LocalTaxa_Oregon_Vertebrates.csv&quot;,
+  blast_e_value=1e-5,
+  blast_max_target_seqs=2000,
+  blast_task=&quot;megablast&quot;,
+  # Set to TRUE to return full taxonomies in the output file.
+  full_names=TRUE,
+  # Set the separator between taxa names in the output file.
+  separator=&quot; | &quot;)
+
+# Read in Local Taxa Tool output.
+LTT_output_taxonomies&lt;-read.csv(file=&quot;Sequences_Classified_Taxonomies.csv&quot;)
+
+# View Local Taxa Tool output.
+print(LTT_output_taxonomies)</code></pre>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Sequence_name
+</th>
+<th style="text-align:left;">
+Sequence
+</th>
+<th style="text-align:left;">
+Best_match_references
+</th>
+<th style="text-align:left;">
+Best_match_E_value
+</th>
+<th style="text-align:left;">
+Best_match_bit_score
+</th>
+<th style="text-align:left;">
+Best_match_query_cover.mean
+</th>
+<th style="text-align:left;">
+Best_match_query_cover.SD
+</th>
+<th style="text-align:left;">
+Best_match_PID.mean
+</th>
+<th style="text-align:left;">
+Best_match_PID.SD
+</th>
+<th style="text-align:left;">
+Local_taxa
+</th>
+<th style="text-align:left;">
+Local_species
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Sequence_1
+</td>
+<td style="text-align:left;">
+TTAGCCCTAAACCTAGATAGTTAACTCAAACAAAACTATCCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTACATCCCT
+</td>
+<td style="text-align:left;">
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma yagouaroundi |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma concolor |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx rufus |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Catopuma;Catopuma badia |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Acinonyx;Acinonyx jubatus
+</td>
+<td style="text-align:left;">
+2.61e-47
+</td>
+<td style="text-align:left;">
+187
+</td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx rufus |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma concolor
+</td>
+<td style="text-align:left;">
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx rufus |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma concolor
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sequence_2
+</td>
+<td style="text-align:left;">
+TTAGCCCTAAACATAAATAGTTGTCCAACAAAACAATTCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTATATCCCT
+</td>
+<td style="text-align:left;">
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes zerda |
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes lagopus
+</td>
+<td style="text-align:left;">
+7.12e-43
+</td>
+<td style="text-align:left;">
+172
+</td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+97.98
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes
+</td>
+<td style="text-align:left;">
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes macrotis |
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes vulpes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sequence_3
+</td>
+<td style="text-align:left;">
+CCTTACGAATCCTGTTTGTCTTCTCCACCCGCGGATATTGCGCCCGGAGTCCCTGTAGTATCGTAACAACTAGGCTCGTGACGTATGTCAAGGTACTGTC
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+<td style="text-align:left;">
+No significant similarity found
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="extra-subsetting-reference-databases-to-local-species" class="section level2">
 <h2>Extra: Subsetting Reference Databases to Local Species</h2>
@@ -2883,7 +3064,7 @@ citation(&quot;LocaTT&quot;)</code></pre>
 ## 
 ##   Kenen B Goodwin and Taal Levi (2023). Local Taxa Tool (LocaTT):
 ##   Geographically-conscious taxonomic assignment for DNA metabarcoding.
-##   R package version 1.0.2, https://github.com/Urodelan/LocaTT.
+##   R package version 1.0.3, https://github.com/Urodelan/LocaTT.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -2891,7 +3072,7 @@ citation(&quot;LocaTT&quot;)</code></pre>
 ##     title = {Local Taxa Tool (LocaTT): Geographically-conscious taxonomic assignment for DNA metabarcoding},
 ##     author = {Kenen B Goodwin and Taal Levi},
 ##     year = {2023},
-##     note = {R package version 1.0.2},
+##     note = {R package version 1.0.3},
 ##     url = {https://github.com/Urodelan/LocaTT},
 ##   }</code></pre>
 <hr />
