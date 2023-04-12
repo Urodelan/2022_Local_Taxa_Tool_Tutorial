@@ -1710,7 +1710,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Local Taxa Tool (LocaTT) Tutorial</h1>
 <h4 class="author">Contact: Kenen Goodwin (<a href="mailto:urodelan@gmail.com" class="email">urodelan@gmail.com</a>)</h4>
-<h4 class="date">Last compiled on 11 April, 2023</h4>
+<h4 class="date">Last compiled on 12 April, 2023</h4>
 
 </div>
 
@@ -1773,7 +1773,7 @@ install_github(&quot;Urodelan/LocaTT&quot;)
 
 # Load the Local Taxa Tool package.
 library(LocaTT)</code></pre>
-<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.0.3.
+<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.0.4.
 ##    ______  ______  ______   Geographically-conscious
 ##     |  | \/ |  | \/ |  |    taxonomic assignment
 ##    _|__|_/\_|__|_/\_|__|_   for DNA metabarcoding.
@@ -2604,12 +2604,15 @@ Local_species field.</p>
 <p>In record 3, there were no “significant” BLAST hits, resulting in “No
 significant similarity found” in the Local Taxa Tool output for this
 record.</p>
-<p>If we want to return full taxonomies in the
-<code>local_taxa_tool</code> output file, we can set the full_names
-argument to TRUE. We can also change the separator between taxa names
-using the separator argument. In the below example, we return full
-taxonomies and change the separator between taxa names in the
-<code>local_taxa_tool</code> output file.</p>
+<p>We also have several options in the <code>local_taxa_tool</code>
+function to control how taxa names are formatted in the output file. If
+we want to return full taxonomies in the output file, we can set the
+full_names argument to TRUE. We can also tell the tool to replace spaces
+in taxa names in the output file with underscores by setting the
+underscores argument to TRUE, and we can change the separator between
+taxa names using the separator argument. In the below example, we return
+full taxonomies in the output file in which spaces are replaced by
+underscores, and we change the separator between taxa names.</p>
 <pre class="r"><code># Run the Local Taxa Tool.
 local_taxa_tool(
   path_to_sequences_to_classify=&quot;Sequences.fasta&quot;,
@@ -2621,6 +2624,8 @@ local_taxa_tool(
   blast_task=&quot;megablast&quot;,
   # Set to TRUE to return full taxonomies in the output file.
   full_names=TRUE,
+  # Replace spaces in taxa names in the output file with underscores.
+  underscores=TRUE,
   # Set the separator between taxa names in the output file.
   separator=&quot; | &quot;)
 
@@ -2677,11 +2682,11 @@ Sequence_1
 TTAGCCCTAAACCTAGATAGTTAACTCAAACAAAACTATCCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTACATCCCT
 </td>
 <td style="text-align:left;">
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma yagouaroundi |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma concolor |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx rufus |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Catopuma;Catopuma badia |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Acinonyx;Acinonyx jubatus
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_yagouaroundi |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_concolor |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx_rufus |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Catopuma;Catopuma_badia |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Acinonyx;Acinonyx_jubatus
 </td>
 <td style="text-align:left;">
 2.61e-47
@@ -2702,12 +2707,12 @@ Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Acinonyx;Acinonyx jubatus
 0
 </td>
 <td style="text-align:left;">
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx rufus |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma concolor
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx_rufus |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_concolor
 </td>
 <td style="text-align:left;">
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx rufus |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma concolor
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx_rufus |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_concolor
 </td>
 </tr>
 <tr>
@@ -2718,8 +2723,8 @@ Sequence_2
 TTAGCCCTAAACATAAATAGTTGTCCAACAAAACAATTCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTATATCCCT
 </td>
 <td style="text-align:left;">
-Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes zerda |
-Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes lagopus
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_zerda |
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_lagopus
 </td>
 <td style="text-align:left;">
 7.12e-43
@@ -2743,8 +2748,8 @@ Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes lagopus
 Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes
 </td>
 <td style="text-align:left;">
-Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes macrotis |
-Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes vulpes
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_macrotis |
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_vulpes
 </td>
 </tr>
 <tr>
@@ -3064,7 +3069,7 @@ citation(&quot;LocaTT&quot;)</code></pre>
 ## 
 ##   Kenen B Goodwin and Taal Levi (2023). Local Taxa Tool (LocaTT):
 ##   Geographically-conscious taxonomic assignment for DNA metabarcoding.
-##   R package version 1.0.3, https://github.com/Urodelan/LocaTT.
+##   R package version 1.0.4, https://github.com/Urodelan/LocaTT.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -3072,7 +3077,7 @@ citation(&quot;LocaTT&quot;)</code></pre>
 ##     title = {Local Taxa Tool (LocaTT): Geographically-conscious taxonomic assignment for DNA metabarcoding},
 ##     author = {Kenen B Goodwin and Taal Levi},
 ##     year = {2023},
-##     note = {R package version 1.0.3},
+##     note = {R package version 1.0.4},
 ##     url = {https://github.com/Urodelan/LocaTT},
 ##   }</code></pre>
 <hr />
