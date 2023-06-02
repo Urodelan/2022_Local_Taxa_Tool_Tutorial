@@ -1710,7 +1710,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Local Taxa Tool (LocaTT) Tutorial</h1>
 <h4 class="author">Contact: Kenen Goodwin (<a href="mailto:urodelan@gmail.com" class="email">urodelan@gmail.com</a>)</h4>
-<h4 class="date">Last compiled on 12 May, 2023</h4>
+<h4 class="date">Last compiled on 2 June, 2023</h4>
 
 </div>
 
@@ -1795,7 +1795,44 @@ functions as well.</p>
 arguments which are used by both R and the command line. If using
 Windows, please use file paths which can be understood by both R and the
 command line. For example, by using forward slashes in file paths
-instead of backslashes.</p>
+instead of backslashes. Further, some functions do not allow spaces in
+certain file paths which are read by both R and the command line.
+Therefore, it is recommended that file paths provided as function
+arguments lack spaces. If the working directory contains spaces, you can
+set R’s working directory with the <code>setwd</code> function, then
+ensure that relative file paths used as function arguments contain no
+spaces.</p>
+<p><strong><u>Using the Local Taxa Tool on a high performance computing
+cluster:</u></strong></p>
+<p>On some high performance computing clusters, BLAST is installed as a
+module which must be loaded from the terminal (<em>e.g.</em>,
+<code>module load blast</code>) in order to be recognized by R. Further,
+on some clusters R is set up as a container which does not recognize
+modules loaded outside of the container. Under this condition, adding
+the cluster’s module path for BLAST to R’s PATH environmental variable
+may allow R to locate command line BLAST programs. The cluster’s module
+path for BLAST can be found using <code>module show blast</code> on the
+terminal, and this can be added to R’s PATH environmental variable using
+R’s <code>Sys.setenv</code> function. Below is an example of how to do
+this.</p>
+<pre class="sh"><code># Run in Unix terminal. Get module path for BLAST on high performance computing cluster.
+module show blast 2&gt;&amp;1 | grep ^prepend_path\( | sed &#39;s/^prepend_path(&quot;PATH&quot;,//&#39; | sed &#39;s/)$//&#39;</code></pre>
+<pre><code>## &quot;/your/path/to/BLAST/module/bin/folder/here&quot;</code></pre>
+<pre class="r"><code># In R, add the cluster&#39;s module path for BLAST to R&#39;s PATH environmental variable.
+Sys.setenv(PATH=paste(&quot;/your/path/to/BLAST/module/bin/folder/here&quot;,Sys.getenv(&quot;PATH&quot;),sep=&quot;:&quot;))
+
+# Load the Local Taxa Tool package.
+library(LocaTT)
+
+# Check that R can find BLAST programs by checking the BLAST version.
+blast_version()</code></pre>
+<pre><code>## [1] &quot;blastn: 2.12.0+ Package: blast 2.12.0, build Jun  4 2021 04:06:33&quot;</code></pre>
+<p>Alternatively, paths to BLAST programs can be provided as arguments
+in the functions <code>blast_version</code>,
+<code>format_reference_database</code>, and
+<code>local_taxa_tool</code>. If you continue to encounter issues
+running command line BLAST programs from R on a cluster, please contact
+your cluster’s help desk.</p>
 </div>
 <div id="example-data" class="section level2">
 <h2>Example Data</h2>
