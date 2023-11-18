@@ -1710,7 +1710,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Local Taxa Tool (LocaTT) Tutorial</h1>
 <h4 class="author">Contact: Kenen Goodwin (<a href="mailto:urodelan@gmail.com" class="email">urodelan@gmail.com</a>)</h4>
-<h4 class="date">Last compiled on 1 July, 2023</h4>
+<h4 class="date">Last compiled on 18 November, 2023</h4>
 
 </div>
 
@@ -1762,29 +1762,33 @@ R.Version()$version.string</code></pre>
 R.Version()$platform</code></pre>
 <pre><code>## [1] &quot;x86_64-apple-darwin17.0&quot;</code></pre>
 <p>Now let’s install the Local Taxa Tool package, which is named
-“LocaTT”. The package is available on GitHub, so we’ll install the
-devtools package first in order to get the <code>install_github</code>
-function.</p>
+“LocaTT”. To install the current CRAN release, use the
+<code>install.packages</code> function below.</p>
+<pre class="r"><code># Install the current Local Taxa Tool (LocaTT) release from CRAN.
+install.packages(&quot;LocaTT&quot;)</code></pre>
+<p>The development version of the package is available on GitHub. To
+install the development version, install the devtools package first in
+order to get the <code>install_github</code> function.</p>
 <pre class="r"><code># Install the devtools package.
 install.packages(&quot;devtools&quot;)
 
 # Load the devtools package.
 library(devtools)
 
-# Install the Local Taxa Tool (LocaTT) package from GitHub.
-devtools::install_github(&quot;Urodelan/LocaTT&quot;)
-
-# Load the Local Taxa Tool package.
+# Install the development version of the Local Taxa Tool (LocaTT) package from GitHub.
+devtools::install_github(&quot;Urodelan/LocaTT&quot;)</code></pre>
+<p>Now, load the Local Taxa Tool package.</p>
+<pre class="r"><code># Load the Local Taxa Tool package.
 library(LocaTT)</code></pre>
-<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.0.22.
+<pre><code>## Welcome to the Local Taxa Tool (LocaTT)! This is version 1.1.1.
 ##    ______  ______  ______   Geographically-conscious
 ##     |  | \/ |  | \/ |  |    taxonomic assignment
 ##    _|__|_/\_|__|_/\_|__|_   for DNA metabarcoding.
 ## For a detailed tutorial, see: https://urodelan.github.io/Local_Taxa_Tool_Tutorial/
 ## Command line BLAST is required, see tutorial for details.
 ## See citation(&#39;LocaTT&#39;) if used in publications.</code></pre>
-<p>Once the Local Taxa Tool is installed, let’s check that the BLAST
-installation was successful.</p>
+<p>Once the Local Taxa Tool is installed and loaded, let’s check that
+the BLAST installation was successful.</p>
 <pre class="r"><code># Display the BLAST version.
 blast_version()</code></pre>
 <pre><code>## [1] &quot;blastn: 2.12.0+ Package: blast 2.12.0, build Jun  4 2021 04:06:33&quot;</code></pre>
@@ -2524,8 +2528,8 @@ Sequence_1
 TTAGCCCTAAACCTAGATAGTTAACTCAAACAAAACTATCCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTACATCCCT
 </td>
 <td style="text-align:left;">
-Puma yagouaroundi, Puma concolor, Lynx rufus, Catopuma badia, Acinonyx
-jubatus
+Acinonyx jubatus, Catopuma badia, Lynx rufus, Puma concolor, Puma
+yagouaroundi
 </td>
 <td style="text-align:left;">
 2.61e-47
@@ -2560,7 +2564,7 @@ Sequence_2
 TTAGCCCTAAACATAAATAGTTGTCCAACAAAACAATTCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTATATCCCT
 </td>
 <td style="text-align:left;">
-Vulpes zerda, Vulpes lagopus
+Vulpes lagopus, Vulpes zerda
 </td>
 <td style="text-align:left;">
 7.12e-43
@@ -2722,11 +2726,11 @@ Sequence_1
 TTAGCCCTAAACCTAGATAGTTAACTCAAACAAAACTATCCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTACATCCCT
 </td>
 <td style="text-align:left;">
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_yagouaroundi |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_concolor |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx_rufus |
-Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Catopuma;Catopuma_badia |
 Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Acinonyx;Acinonyx_jubatus
+| Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Catopuma;Catopuma_badia
+| Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Lynx;Lynx_rufus |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_concolor |
+Eukaryota;Chordata;Mammalia;Carnivora;Felidae;Puma;Puma_yagouaroundi
 </td>
 <td style="text-align:left;">
 2.61e-47
@@ -2763,8 +2767,8 @@ Sequence_2
 TTAGCCCTAAACATAAATAGTTGTCCAACAAAACAATTCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTATATCCCT
 </td>
 <td style="text-align:left;">
-Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_zerda |
-Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_lagopus
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_lagopus |
+Eukaryota;Chordata;Mammalia;Carnivora;Canidae;Vulpes;Vulpes_zerda
 </td>
 <td style="text-align:left;">
 7.12e-43
@@ -2916,7 +2920,7 @@ Sequence_1
 TTAGCCCTAAACCTAGATAGTTAACTCAAACAAAACTATCCGCCAGAGAACTACTAGCAACAGCTTAAAACTCAAAGGACTTGGCGGTGCTTTACATCCCT
 </td>
 <td style="text-align:left;">
-Puma concolor, Lynx rufus
+Lynx rufus, Puma concolor
 </td>
 <td style="text-align:left;">
 1.07e-48
@@ -3109,7 +3113,7 @@ citation(&quot;LocaTT&quot;)</code></pre>
 ## 
 ##   Kenen B Goodwin and Taal Levi (2023). Local Taxa Tool (LocaTT):
 ##   Geographically-conscious taxonomic assignment for DNA metabarcoding.
-##   R package version 1.0.22, https://github.com/Urodelan/LocaTT.
+##   R package version 1.1.1, https://github.com/Urodelan/LocaTT.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -3117,7 +3121,7 @@ citation(&quot;LocaTT&quot;)</code></pre>
 ##     title = {Local Taxa Tool (LocaTT): Geographically-conscious taxonomic assignment for DNA metabarcoding},
 ##     author = {Kenen B Goodwin and Taal Levi},
 ##     year = {2023},
-##     note = {R package version 1.0.22},
+##     note = {R package version 1.1.1},
 ##     url = {https://github.com/Urodelan/LocaTT},
 ##   }</code></pre>
 <hr />
